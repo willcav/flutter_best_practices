@@ -1,4 +1,4 @@
-:writing_hand: #Flutter Clean Architecture - Error Handling 
+#Flutter Clean Architecture - Error Handling 
 
 A way to Handle Exceptions in your Flutter Projects that use Clean Architecture.
 
