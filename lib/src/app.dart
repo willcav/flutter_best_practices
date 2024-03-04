@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_arch_error_handling/src/service_locator/service_locator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import 'dependency_injection/injection_container.dart';
 import 'settings/settings_controller.dart';
 import 'ui/user_page.dart';
 import 'ui/user_presenter.dart';
@@ -32,7 +31,8 @@ class App extends StatelessWidget {
           supportedLocales: const [
             Locale('en', ''),
           ],
-          onGenerateTitle: (BuildContext context) => AppLocalizations.of(context)!.appTitle,
+          onGenerateTitle: (BuildContext context) =>
+              AppLocalizations.of(context)!.appTitle,
           theme: ThemeData(),
           darkTheme: ThemeData.dark(),
           themeMode: settingsController.themeMode,
@@ -43,7 +43,7 @@ class App extends StatelessWidget {
                 switch (routeSettings.name) {
                   default:
                     return UserPage(
-                      presenter: sl<UserPresenter>(),
+                      presenter: SL.I<UserPresenter>(),
                     );
                 }
               },
