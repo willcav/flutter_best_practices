@@ -58,9 +58,9 @@ class DioAdapter implements HttpClient {
 
       final response = await futureResponse.timeout(const Duration(seconds: 5));
       return _handleResponse(response);
-    } on DioError catch (error) {
+    } on DioException catch (error) {
       debugPrint(error.toString());
-      if (error.type == DioErrorType.connectTimeout) {
+      if (error.type == DioExceptionType.connectionTimeout) {
         throw HttpError.timeOut();
       } else {
         throw HttpError.serverError();
