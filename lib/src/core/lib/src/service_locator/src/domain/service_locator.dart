@@ -1,7 +1,6 @@
 import 'dart:async';
-
-import 'package:flutter_clean_arch_error_handling/src/service_locator/domain/service_locator_impl.dart';
-import 'package:flutter_clean_arch_error_handling/src/service_locator/infra/interfaces/service_locator_driver.dart';
+import 'package:core/src/service_locator/src/domain/service_locator_impl.dart';
+import 'package:core/src/service_locator/src/infra/interfaces/service_locator_driver.dart';
 
 typedef SL = ServiceLocator;
 

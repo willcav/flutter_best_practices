@@ -15,7 +15,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   dio: 5.4.1
-  get_it: 7.6.4
+  core:
+    path: lib/src/core
 
 dev_dependencies:
   flutter_test:

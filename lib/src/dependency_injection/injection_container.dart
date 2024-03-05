@@ -4,8 +4,8 @@ import 'package:flutter_clean_arch_error_handling/src/data/usecases/remote_get_u
 import 'package:flutter_clean_arch_error_handling/src/domain/usecases/get_user_usecase.dart';
 import 'package:flutter_clean_arch_error_handling/src/infra/dio_adapter.dart';
 import 'package:flutter_clean_arch_error_handling/src/presentation/user_presenter.dart';
-import 'package:flutter_clean_arch_error_handling/src/service_locator/domain/service_locator.dart';
 import 'package:flutter_clean_arch_error_handling/src/ui/user_presenter.dart';
+import 'package:core/core.dart';
 
 Future<void> init() async {
   // User Presenter
@@ -15,7 +15,7 @@ Future<void> init() async {
   // Get User use case
   SL.I.registerLazySingleton<GetUserUseCase>(() => RemoteGetUser(
         client: SL.I(),
-        url: 'https://61a00297a647020017613270.mockapi.io/api/v1/user',
+        url: 'https://65e67675d7f0758a76e86f94.mockapi.io/user',
       ));
 
   // HttpClient Dio Adapater
