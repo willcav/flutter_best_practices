@@ -11,7 +11,12 @@ This project covers:
 
 1. [Features](#features)
 2. [Usage](#usage)
-3. [Service Locator Abstraction](#service-locator)
+3. [Core Concepts](#core-concepts)
+   1. [Error Handling](#error-handling)
+   2. [Clean Architecture](#clean-architecture)
+   3. [Network Abstraction](#network-abstraction)
+   4. [Service Locator Abstraction](#service-locator)
+4. [Contributing](#contributing)
 
 # Features <a name="features"></a>
 
@@ -41,19 +46,63 @@ flutter pub get
 
 4. Explore the project structure and adapt it to your application`s needs.
 
-# Core Concepts
+---
 
-## Clean Architecture
+# Core Concepts <a name="core-concepts"></a>
+
+## Error Handling <a name="error-handling"></a>
+
+Error handling is a crucial aspect of any application, and this project employs the **Either** class to manage error situations effectively.
+
+The **Either** class is an abstraction that represents a value of one of two possible types: `L` for Left, typically representing an error or failure, and `R` for Right, representing a successful result. This approach allows us to handle errors explicitly in our code without relying extensively on `try-catch` blocks.
+
+Example usage:
+
+```dart
+// Example of a function that returns an asynchronous result
+Future<Either<Failure, DogEntity>> getDog() async {
+  try {
+    final dog = await _repository.fetchDog();
+    return Right(user); // Success
+  } catch (e) {
+    return Left(Failure("Failed to fetch dog")); // Failure
+  }
+}
+
+// Using the result of the [getDog] function
+getDog().then((result) {
+  result.fold(
+    (failure) {
+      // Handle the error
+      print("Error: ${failure.message}");
+    },
+    (dog) {
+      // Use the dog data
+      print("Dog data fetched successfully: $dog");
+    },
+  );
+});
+```
+
+This approach enables us to manage error situations explicitly in our code, improving readability and reducing the likelihood of errors being overlooked or mishandled.
+
+---
+
+## Clean Architecture <a name="clean-architecture"></a>
 
 The project follows clean architecture principles to separate concerns and maintain a clear separation of layers: domain, data, and presentation.
 
-## Network Abstraction
+---
+
+## Network Abstraction <a name="network-abstraction"></a>
 
 The `Network` package provides a robust network layer abstraction, facilitating HTTP requests with flexibility and testability. It utilizes domain-driven design and inversion of control principles for effective dependency management.
 
 The current network implementation utilizes `Dio`, however, it can be effortlessly replaced with another library without requiring modifications to the app, as the structure adheres to the defined interfaces.
 
 This architecture allows for seamless integration with different HTTP client implementations while maintaining consistency and flexibility in your application's network layer. The defined interfaces facilitate dependency injection and decoupling, making it easy to adapt to changes in requirements or technology stacks without disrupting the overall architecture.
+
+---
 
 ## Service Locator Abstraction/Wrapper <a name="service-locator"></a>
 
@@ -67,7 +116,9 @@ When the need arises to switch to a different service locator library or upgrade
 In this project, the **GetIt** dependency is encapsulated within the **GetItDriver** implementation,
 adhering to the interface we've defined.
 
-# Contributing
+---
+
+# Contributing <a name="contributing"></a>
 
 I welcome contributions to enhance and expand this repository! Here are some ways you can contribute:
 
