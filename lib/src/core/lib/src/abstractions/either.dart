@@ -51,7 +51,7 @@ abstract class Either<L, R> {
     }
   }
 
-  B fold<B>(B ifLeft(L l), B ifRight(R r)) {
+  B fold<B>(B Function(L l) ifLeft, B Function(R r) ifRight) {
     return isLeft ? ifLeft(left) : ifRight(right);
   }
 }

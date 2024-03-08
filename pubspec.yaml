@@ -14,7 +14,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  dio: 5.4.1
   core:
     path: lib/src/core
 

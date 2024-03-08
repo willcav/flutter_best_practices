@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:get_it/get_it.dart';
-import 'package:core/src/service_locator/src/infra/interfaces/service_locator_driver.dart';
+import '../infra/interfaces/service_locator_driver.dart';
 
 class GetItDriver implements ServiceLocatorDriver {
   final _getIt = GetIt.I;

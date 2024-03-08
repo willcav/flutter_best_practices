@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:core/src/service_locator/src/domain/service_locator.dart';
-import 'package:core/src/service_locator/src/infra/interfaces/service_locator_driver.dart';
+import 'service_locator.dart';
+import '../infra/interfaces/service_locator_driver.dart';
 
 class ServiceLocatorImpl implements ServiceLocator {
   final ServiceLocatorDriver _driver;

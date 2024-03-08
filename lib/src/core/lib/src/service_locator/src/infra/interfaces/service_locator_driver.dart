@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:core/src/service_locator/src/drivers/get_it_driver.dart';
+import '../../drivers/get_it_driver.dart';
 
 abstract interface class ServiceLocatorDriver {
   static final _instance = GetItDriver();

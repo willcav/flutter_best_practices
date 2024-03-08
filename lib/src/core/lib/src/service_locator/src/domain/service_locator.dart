@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:core/src/service_locator/src/domain/service_locator_impl.dart';
-import 'package:core/src/service_locator/src/infra/interfaces/service_locator_driver.dart';
+import 'service_locator_impl.dart';
+import '../infra/interfaces/service_locator_driver.dart';
 
 typedef SL = ServiceLocator;
 
@@ -24,6 +24,7 @@ abstract interface class ServiceLocator {
     T Function() factoryFunc, {
     String? instanceName,
   });
+
   void registerFactoryWithParams<T extends Object, P1, P2>(
     T Function(P1, P2) factoryFunc, {
     String? instanceName,

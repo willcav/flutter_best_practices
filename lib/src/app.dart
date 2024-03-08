@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'features/user/presentation/user_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'settings/settings_controller.dart';
-import 'ui/user_page.dart';
-import 'ui/user_presenter.dart';
-import 'package:core/core.dart';
 
 class App extends StatelessWidget {
   const App({
@@ -42,9 +40,7 @@ class App extends StatelessWidget {
               builder: (BuildContext context) {
                 switch (routeSettings.name) {
                   default:
-                    return UserPage(
-                      presenter: SL.I<UserPresenter>(),
-                    );
+                    return const UserPage();
                 }
               },
             );
