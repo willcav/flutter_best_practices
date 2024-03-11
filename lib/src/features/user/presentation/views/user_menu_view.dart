@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+
 import '../user_page_state.dart';
 
-class UserErrorView extends StatelessWidget {
-  final UserPageErrorState state;
+class UserMenuView extends StatelessWidget {
+  final UserPageMenuState state;
 
-  const UserErrorView(this.state, {super.key});
+  const UserMenuView(this.state, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,17 +13,17 @@ class UserErrorView extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            state.errorMessage,
-            style: const TextStyle(fontSize: 24),
+          ElevatedButton(
+            onPressed: state.onSuccessTap,
+            child: Text(state.successButtonLabel),
           ),
           const SizedBox(
             height: 24,
           ),
           ElevatedButton(
-            onPressed: state.onBackTap,
-            child: const Text('Back'),
-          )
+            onPressed: state.onErrorTap,
+            child: Text(state.errorButtonLabel),
+          ),
         ],
       ),
     );

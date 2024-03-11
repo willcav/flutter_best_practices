@@ -45,7 +45,7 @@ class NetworkInterceptorHandler {
         url: updatedResponse.url,
         statusCode: updatedResponse.statusCode,
         headers: updatedResponse.headers,
-        data: updatedResponse.data,
+        data: updatedResponse.getData(),
       ),
     );
   }

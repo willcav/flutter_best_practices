@@ -34,7 +34,7 @@ class NetworkImpl implements Network {
     NetworkResponseType? responseType,
   }) async {
     final request = await prepareRequest(
-      NetworkRequestMethod.post,
+      NetworkRequestMethod.get,
       endpoint,
       headers: headers,
       queryParameters: queryParameters,
@@ -76,7 +76,7 @@ class NetworkImpl implements Network {
     NetworkResponseType? responseType,
   }) async {
     final request = await prepareRequest(
-      NetworkRequestMethod.post,
+      NetworkRequestMethod.put,
       endpoint,
       contentType: contentType,
       headers: headers,
@@ -98,7 +98,7 @@ class NetworkImpl implements Network {
     NetworkResponseType? responseType,
   }) async {
     final request = await prepareRequest(
-      NetworkRequestMethod.post,
+      NetworkRequestMethod.patch,
       endpoint,
       contentType: contentType,
       headers: headers,
@@ -118,7 +118,7 @@ class NetworkImpl implements Network {
     NetworkResponseType? responseType,
   }) async {
     final request = await prepareRequest(
-      NetworkRequestMethod.post,
+      NetworkRequestMethod.delete,
       endpoint,
       headers: headers,
       queryParameters: queryParameters,

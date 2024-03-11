@@ -7,6 +7,8 @@ class UserDataSourceImpl implements UserDatasource {
   UserDataSourceImpl(this.networkService);
 
   @override
-  Future<Either<Failure, NetworkResponse>> getUser() =>
-      networkService.get('user', queryParameters: {'id': 2});
+  Future<Either<Failure, NetworkResponse>> getUser(
+          {required bool simulateError}) =>
+      networkService.get('user${simulateError ? '-error' : ''}',
+          queryParameters: {'id': 2});
 }

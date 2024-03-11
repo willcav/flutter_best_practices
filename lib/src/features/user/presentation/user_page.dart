@@ -4,6 +4,7 @@ import 'user_page_state.dart';
 import 'user_viewmodel.dart';
 import 'views/user_error_view.dart';
 import 'views/user_loading_view.dart';
+import 'views/user_menu_view.dart';
 import 'views/user_success_view.dart';
 import '../../../utils/presentation_extensions.dart';
 
@@ -23,7 +24,7 @@ class _UserPageState extends State<UserPage> {
   void initState() {
     super.initState();
     viewModel = SL.I<UserViewModel>();
-    viewModel.fetchUserData();
+    viewModel.init();
   }
 
   @override
@@ -32,6 +33,7 @@ class _UserPageState extends State<UserPage> {
       body: SafeArea(
         child: viewModel.state.observer(builder: (_, state, __) {
           return switch (state) {
+            UserPageMenuState() => UserMenuView(state),
             UserPageSuccessState() => UserSuccessView(state),
             UserPageErrorState() => UserErrorView(state),
             UserPageLoadingState() => UserLoadingView(state),

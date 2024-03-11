@@ -21,14 +21,12 @@ class DioClient implements HttpClient {
 
     switch (request.method) {
       case NetworkRequestMethod.get:
-        final result = (await dio.get(
+        return (await dio.get(
           request.url,
           queryParameters: request.queryParameters,
           options: options,
         ))
             .toMap();
-        print(result);
-        return result;
       case NetworkRequestMethod.post:
         return (await dio.post(
           request.url,

@@ -14,17 +14,54 @@ class UserViewModel {
 
   ValueListenable<UserPageState> get state => _state;
 
-  Future<void> fetchUserData() async {
+  Future<void> fetchUserDataWithError() => fetchUserData(true);
+
+  Future<void> fetchUserDataWithSuccess() => fetchUserData(false);
+
+  void init() {
+    setMenuState();
+  }
+
+  @visibleForTesting
+  Future<void> fetchUserData(bool simulateError) async {
     _state.setValue(UserPageLoadingState());
 
-    final result = await getUserUseCase();
+    final result = await getUserUseCase(simulateError);
 
-    _state.setValue(result.fold(
-      (failure) => UserPageErrorState(failure.message ?? ''),
-      (user) => UserPageSuccessState(
-        name: user.name,
-        avatarPath: user.avatarPicture,
+    _state.setValue(
+      result.fold(
+        (failure) => UserPageErrorState(
+          onBackTap: setMenuState,
+          errorMessage: failure.message ?? '',
+        ),
+        (user) => UserPageSuccessState(
+          name: user.name,
+          onBackTap: setMenuState,
+          avatarPath: user.avatarPicture,
+        ),
       ),
-    ));
+    );
+  }
+
+  @visibleForTesting
+  void onSuccessTap() {
+    fetchUserData(false);
+  }
+
+  @visibleForTesting
+  void onErrorTap() {
+    fetchUserData(true);
+  }
+
+  @visibleForTesting
+  void setMenuState() {
+    _state.setValue(
+      UserPageMenuState(
+        successButtonLabel: 'Success request →',
+        errorButtonLabel: 'Error request →',
+        onSuccessTap: onSuccessTap,
+        onErrorTap: onErrorTap,
+      ),
+    );
   }
 }

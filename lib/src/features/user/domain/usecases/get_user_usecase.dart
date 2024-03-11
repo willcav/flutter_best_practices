@@ -7,5 +7,6 @@ class GetUserUseCase {
 
   GetUserUseCase({required this.repository});
 
-  Future<Either<Failure, UserEntity>> call() => repository.getUser();
+  Future<Either<Failure, UserEntity>> call(bool simulateError) =>
+      repository.getUser(simulateError: simulateError);
 }

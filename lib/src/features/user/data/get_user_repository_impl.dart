@@ -10,12 +10,13 @@ class GetUserRepositoryImpl implements GetUserRepository {
   GetUserRepositoryImpl(this.userDatasource);
 
   @override
-  Future<Either<Failure, UserEntity>> getUser() async {
-    final result = await userDatasource.getUser();
+  Future<Either<Failure, UserEntity>> getUser(
+      {bool simulateError = false}) async {
+    final result = await userDatasource.getUser(simulateError: simulateError);
 
     if (result.isLeft) return Left(result.left);
 
-    final user = UserModel.fromMap(result.right.data);
+    final user = UserModel.fromMap(result.right.jsonListData.first);
 
     return Right(user);
   }

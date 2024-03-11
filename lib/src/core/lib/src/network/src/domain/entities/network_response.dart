@@ -1,35 +1,54 @@
+import 'dart:convert';
+
+import '../../../../utils/json_utils.dart';
+import '../../../../utils/typedef.dart';
+import '../utils/network_request_method.dart';
+
 class NetworkResponse {
   final String url;
   final int statusCode;
+  final NetworkRequestMethod method;
   final Map<String, dynamic> headers;
-  final Map<String, dynamic> data;
+  final dynamic _data;
 
-  NetworkResponse({
+  Json get jsonData => JsonUtils.parseFromString(jsonEncode(_data)) ?? {};
+
+  JsonList get jsonListData =>
+      JsonListUtils.parseFromString(jsonEncode(_data)) ?? <Json>[];
+
+  dynamic getData() => _data;
+
+  NetworkResponse(
+    this._data, {
     required this.url,
     required this.statusCode,
+    required this.method,
     required this.headers,
-    required this.data,
   });
 
   factory NetworkResponse.fromJson(Map<String, dynamic> json) {
     return NetworkResponse(
+      json['data'],
       url: json['url'],
       statusCode: json['statusCode'],
+      method: (json['method']).toString().toRequestMethod() ??
+          NetworkRequestMethod.get,
       headers: json['headers'],
-      data: json['data'],
     );
   }
 
   NetworkResponse copyWith({
     String? url,
     int? statusCode,
+    NetworkRequestMethod? method,
     Map<String, dynamic>? headers,
-    Map<String, dynamic>? data,
+    dynamic data,
   }) =>
       NetworkResponse(
+        data ?? _data,
         url: url ?? this.url,
         statusCode: statusCode ?? this.statusCode,
+        method: method ?? this.method,
         headers: headers ?? this.headers,
-        data: data ?? this.data,
       );
 }

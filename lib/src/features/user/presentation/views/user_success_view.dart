@@ -24,6 +24,13 @@ class UserSuccessView extends StatelessWidget {
             state.name,
             style: const TextStyle(fontSize: 24),
           ),
+          const SizedBox(
+            height: 24,
+          ),
+          ElevatedButton(
+            onPressed: state.onBackTap,
+            child: const Text('Back'),
+          )
         ],
       ),
     );
