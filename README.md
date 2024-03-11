@@ -102,6 +102,13 @@ The current network implementation utilizes `Dio`, however, it can be effortless
 
 This architecture allows for seamless integration with different HTTP client implementations while maintaining consistency and flexibility in your application's network layer. The defined interfaces facilitate dependency injection and decoupling, making it easy to adapt to changes in requirements or technology stacks without disrupting the overall architecture.
 
+### Network Schematics
+<img src="https://i.imgur.com/IPKYiG0.png" width="500" alt="network structure" />
+<br/>
+<img src="https://i.imgur.com/6G1Odv1.png" width="700" alt="network overview" />
+<br/>
+<img src="https://i.imgur.com/eJOFVmx.png" width="700" alt="network call flow"/>
+
 ---
 
 ## Service Locator Abstraction/Wrapper <a name="service-locator"></a>
