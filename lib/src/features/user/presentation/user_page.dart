@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:core/core.dart';
+import '../../../settings/theme_widget.dart';
 import 'user_page_state.dart';
 import 'user_viewmodel.dart';
 import 'views/user_error_view.dart';
@@ -31,14 +32,21 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: viewModel.state.observer(builder: (_, state, __) {
-          return switch (state) {
-            UserPageMenuState() => UserMenuView(state),
-            UserPageSuccessState() => UserSuccessView(state),
-            UserPageErrorState() => UserErrorView(state),
-            UserPageLoadingState() => UserLoadingView(state),
-          };
-        }),
+        child: Stack(
+          children: [
+            viewModel.state.observer(
+              builder: (_, state, __) {
+                return switch (state) {
+                  UserPageMenuState() => UserMenuView(state),
+                  UserPageSuccessState() => UserSuccessView(state),
+                  UserPageErrorState() => UserErrorView(state),
+                  UserPageLoadingState() => UserLoadingView(state),
+                };
+              },
+            ),
+            const ThemeWidget(),
+          ],
+        ),
       ),
     );
   }

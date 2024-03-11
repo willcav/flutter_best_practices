@@ -142,7 +142,7 @@ class NetworkImpl implements Network {
 
     // The timeout information can come from a remoteConfig and
     // be injected into this class via a service
-    const timeout = Duration(milliseconds: 20000);
+    const timeout = Duration(milliseconds: 5000);
 
     final request = NetworkRequest(
       url: url,
