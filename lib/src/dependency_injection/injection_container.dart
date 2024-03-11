@@ -2,11 +2,16 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import '../features/user/feature.dart';
+import '../settings/settings_controller.dart';
+import '../settings/settings_service.dart';
 
 Future<void> init() async {
   SL.I.registerLazySingleton<Environment>(() => Environment());
+  SL.I.registerLazySingleton<SettingsController>(
+      () => SettingsController(SettingsService()));
 
   InitializationResources().initialize();
+  SL.I<SettingsController>().loadSettings();
 }
 
 // Implement the environment with your conditions.
