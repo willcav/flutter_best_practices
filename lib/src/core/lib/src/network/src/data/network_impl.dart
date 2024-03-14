@@ -172,10 +172,16 @@ class NetworkImpl implements Network {
 
       return Right(interceptedResponse.right);
     } on NetworkFailure catch (exception) {
-      return Left(HttpFailure(
-          statusCode: exception.statusCode, message: exception.message));
+      return Left(
+        HttpFailure(
+          statusCode: exception.statusCode,
+          message: exception.message,
+        ),
+      );
     } catch (exception) {
-      return Left(GenericFailure(message: exception.toString()));
+      return Left(
+        GenericFailure(message: exception.toString()),
+      );
     }
   }
 }

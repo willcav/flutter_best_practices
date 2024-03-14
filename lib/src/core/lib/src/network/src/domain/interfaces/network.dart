@@ -1,4 +1,3 @@
-import '../../data/interceptors/example_interceptor.dart';
 import '../entities/content_type.dart';
 import '../entities/network_response.dart';
 import '../../../../abstractions/abstractions.dart';
@@ -19,7 +18,6 @@ abstract interface class Network {
     List<NetworkInterceptor> interceptors = const [],
   }) {
     return SL.I<Network>(param1: baseUrl, param2: [
-      ...[ExampleInterceptor()],
       ...interceptors,
     ]);
   }
