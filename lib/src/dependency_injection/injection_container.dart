@@ -1,16 +1,19 @@
 import 'dart:async';
 
 import 'package:core/core.dart';
+import 'package:flutter/material.dart';
 import '../features/user/feature.dart';
 import '../settings/settings_controller.dart';
 import '../settings/settings_service.dart';
 
 Future<void> init() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   SL.I.registerLazySingleton<Environment>(() => Environment());
   SL.I.registerLazySingleton<SettingsController>(
       () => SettingsController(SettingsService()));
 
-  InitializationResources().initialize();
+  await InitializationResources().initialize();
   SL.I<SettingsController>().loadSettings();
 }
 
@@ -24,6 +27,7 @@ class Environment {
 class InitializationResources {
   static final packages = <CommonPackage>[
     NetworkPackage(),
+    StoragePackage(),
   ];
 
   static final features = <CommonFeature>[
