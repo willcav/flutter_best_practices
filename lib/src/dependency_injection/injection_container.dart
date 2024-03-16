@@ -28,6 +28,7 @@ class InitializationResources {
   static final packages = <CommonPackage>[
     NetworkPackage(),
     StoragePackage(),
+    CredentialManagerPackage(),
   ];
 
   static final features = <CommonFeature>[
