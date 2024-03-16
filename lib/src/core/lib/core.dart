@@ -6,3 +6,4 @@ export 'src/network/network.dart';
 export 'src/utils/utils.dart';
 export 'src/storage/storage.dart';
 export 'src/credential_manager/credential_manager.dart';
+export 'src/auth/auth.dart';
